@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://clarito.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://clarito.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://clarito.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestLiberarCola">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestLiberarColaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestLiberarColaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SolicitarNuevaLinea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="empresa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dniContacto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombreRef" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SolicitarNuevaLineaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SolicitarNuevaLineaResult" type="tns:ArrayOfMensaje" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMensaje">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Mensaje" nillable="true" type="tns:Mensaje" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Mensaje">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdMsj" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConfirmarNuevaLinea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="empresa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dniContacto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nroLinea" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmarNuevaLineaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConfirmarNuevaLineaResult" type="tns:ArrayOfMensaje" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarLineas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rucEmpresa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dniContacto" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarLineasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarLineasResult" type="tns:ArrayOfLinea" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLinea">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Linea" nillable="true" type="tns:Linea" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Linea">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="idLinea" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="idEmpresa" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="idPlanes" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreReferencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroLinea" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroIMEI" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fechaActivacion" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="fechaCreacion" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="fechaBaja" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="estado" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="rucEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="precioPlan" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultarLinea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="empresa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nroLinea" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarLineaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarLineaResult" type="tns:ArrayOfLinea" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SolicitarBajaLinea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="empresa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dniContacto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nroLinea" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SolicitarBajaLineaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SolicitarBajaLineaResult" type="tns:ArrayOfMensaje" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarEmpresas">
+        <s:complexType />
+      </s:element>
+      <s:element name="ConsultarEmpresasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarEmpresasResult" type="tns:ArrayOfEmpresa" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmpresa">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Empresa" nillable="true" type="tns:Empresa" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Empresa">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="idEmpresa" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="rucEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreEmpresa" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="estado" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestLiberarColaSoapIn">
+    <wsdl:part name="parameters" element="tns:TestLiberarCola" />
+  </wsdl:message>
+  <wsdl:message name="TestLiberarColaSoapOut">
+    <wsdl:part name="parameters" element="tns:TestLiberarColaResponse" />
+  </wsdl:message>
+  <wsdl:message name="SolicitarNuevaLineaSoapIn">
+    <wsdl:part name="parameters" element="tns:SolicitarNuevaLinea" />
+  </wsdl:message>
+  <wsdl:message name="SolicitarNuevaLineaSoapOut">
+    <wsdl:part name="parameters" element="tns:SolicitarNuevaLineaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmarNuevaLineaSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmarNuevaLinea" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmarNuevaLineaSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmarNuevaLineaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarLineasSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarLineas" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarLineasSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarLineasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarLineaSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarLinea" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarLineaSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarLineaResponse" />
+  </wsdl:message>
+  <wsdl:message name="SolicitarBajaLineaSoapIn">
+    <wsdl:part name="parameters" element="tns:SolicitarBajaLinea" />
+  </wsdl:message>
+  <wsdl:message name="SolicitarBajaLineaSoapOut">
+    <wsdl:part name="parameters" element="tns:SolicitarBajaLineaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarEmpresasSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarEmpresas" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarEmpresasSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarEmpresasResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestLiberarCola">
+      <wsdl:input message="tns:TestLiberarColaSoapIn" />
+      <wsdl:output message="tns:TestLiberarColaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarNuevaLinea">
+      <wsdl:input message="tns:SolicitarNuevaLineaSoapIn" />
+      <wsdl:output message="tns:SolicitarNuevaLineaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmarNuevaLinea">
+      <wsdl:input message="tns:ConfirmarNuevaLineaSoapIn" />
+      <wsdl:output message="tns:ConfirmarNuevaLineaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarLineas">
+      <wsdl:input message="tns:ConsultarLineasSoapIn" />
+      <wsdl:output message="tns:ConsultarLineasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarLinea">
+      <wsdl:input message="tns:ConsultarLineaSoapIn" />
+      <wsdl:output message="tns:ConsultarLineaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarBajaLinea">
+      <wsdl:input message="tns:SolicitarBajaLineaSoapIn" />
+      <wsdl:output message="tns:SolicitarBajaLineaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEmpresas">
+      <wsdl:input message="tns:ConsultarEmpresasSoapIn" />
+      <wsdl:output message="tns:ConsultarEmpresasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://clarito.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestLiberarCola">
+      <soap:operation soapAction="http://clarito.org/TestLiberarCola" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarNuevaLinea">
+      <soap:operation soapAction="http://clarito.org/SolicitarNuevaLinea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmarNuevaLinea">
+      <soap:operation soapAction="http://clarito.org/ConfirmarNuevaLinea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarLineas">
+      <soap:operation soapAction="http://clarito.org/ConsultarLineas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarLinea">
+      <soap:operation soapAction="http://clarito.org/ConsultarLinea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarBajaLinea">
+      <soap:operation soapAction="http://clarito.org/SolicitarBajaLinea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEmpresas">
+      <soap:operation soapAction="http://clarito.org/ConsultarEmpresas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://clarito.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestLiberarCola">
+      <soap12:operation soapAction="http://clarito.org/TestLiberarCola" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarNuevaLinea">
+      <soap12:operation soapAction="http://clarito.org/SolicitarNuevaLinea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmarNuevaLinea">
+      <soap12:operation soapAction="http://clarito.org/ConfirmarNuevaLinea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarLineas">
+      <soap12:operation soapAction="http://clarito.org/ConsultarLineas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarLinea">
+      <soap12:operation soapAction="http://clarito.org/ConsultarLinea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarBajaLinea">
+      <soap12:operation soapAction="http://clarito.org/SolicitarBajaLinea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEmpresas">
+      <soap12:operation soapAction="http://clarito.org/ConsultarEmpresas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://localhost/WsSoapClaro/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://localhost/WsSoapClaro/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
